@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 class RecipesViewModel(private val getRecipesUseCase: GetRecipesUseCase) : BaseViewModel() {
 
-    lateinit var recipesData : MutableLiveData<List<RecipeModel>>
+    var recipesData : MutableLiveData<List<RecipeModel>> = MutableLiveData()
 
     fun getRecipes() {
         viewModelScope.launch {
