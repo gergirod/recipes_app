@@ -1,4 +1,4 @@
-package ger.girod.recipesapp.presentation
+package ger.girod.recipesapp.presentation.recipes_list
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

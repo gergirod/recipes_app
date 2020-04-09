@@ -1,10 +1,11 @@
-package ger.girod.recipesapp.presentation
+package ger.girod.recipesapp.presentation.recipes_list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ger.girod.recipesapp.R
 import ger.girod.recipesapp.domain.RecipeModel
+import ger.girod.recipesapp.presentation.recipes_list.ItemRow
 
 class RecipesAdapter : RecyclerView.Adapter<ItemRow>() {
 
