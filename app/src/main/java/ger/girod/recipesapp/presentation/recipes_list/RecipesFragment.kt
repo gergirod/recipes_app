@@ -10,15 +10,16 @@ import ger.girod.recipesapp.R
 import kotlinx.android.synthetic.main.recipes_list_fragment.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import ger.girod.recipesapp.domain.RecipeModel
+import ger.girod.recipesapp.presentation.recipe_detail.RecipeDetailActivity
 import ger.girod.recipesapp.presentation.utils.ScreenState
 
-class RecipesFragment : BaseFragment() {
+class RecipesFragment : BaseFragment() , RecipesAdapter.OnRowClickListener {
 
     override fun layoutId() = R.layout.recipes_list_fragment
 
     private lateinit var viewModel : RecipesViewModel
     private val adapter : RecipesAdapter by lazy {
-        RecipesAdapter()
+        RecipesAdapter(this)
     }
 
     private fun initializeViewModel() {
@@ -60,5 +61,9 @@ class RecipesFragment : BaseFragment() {
         list.layoutManager = layoutManager
         list.adapter = adapter
 
+    }
+
+    override fun onClicked(recipeId: Long) {
+        startActivity(RecipeDetailActivity.getIntent(activity!!, recipeId))
     }
 }

@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class RecipeDetailViewModel(val getRecipeDetailUseCase: GetRecipeDetailUseCase) : BaseViewModel() {
 
-    private var recipeDetailData : MutableLiveData<RecipeDetailModel> = MutableLiveData()
+    var recipeDetailData : MutableLiveData<RecipeDetailModel> = MutableLiveData()
 
     fun getRecipeDetail(id : Long) {
         viewModelScope.launch {

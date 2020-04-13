@@ -8,7 +8,7 @@ import coil.transform.RoundedCornersTransformation
 import ger.girod.recipesapp.domain.RecipeModel
 import kotlinx.android.synthetic.main.recipes_row.view.*
 
-class ItemRow(itemView : View) : RecyclerView.ViewHolder(itemView) {
+class ItemRow(itemView : View, val onRowClickListener: RecipesAdapter.OnRowClickListener) : RecyclerView.ViewHolder(itemView) {
 
     fun populateContent(recipeModel: RecipeModel) {
         itemView.image.load(recipeModel.getImageUrl()) {
@@ -19,6 +19,10 @@ class ItemRow(itemView : View) : RecyclerView.ViewHolder(itemView) {
         itemView.recipe_name.text = recipeModel.title
         itemView.time_text.text = recipeModel.getReadyInString()
         itemView.portion_text.text = recipeModel.getServingString()
+
+        itemView.setOnClickListener {
+            onRowClickListener.onClicked(recipeModel.id)
+        }
     }
 
 }
