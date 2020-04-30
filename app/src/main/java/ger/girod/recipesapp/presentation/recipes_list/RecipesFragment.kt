@@ -60,7 +60,6 @@ class RecipesFragment : BaseFragment() , RecipesAdapter.OnRowClickListener {
         val layoutManager = LinearLayoutManager(activity)
         list.layoutManager = layoutManager
         list.adapter = adapter
-
     }
 
     override fun onClicked(recipeId: Long) {

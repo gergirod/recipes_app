@@ -1,5 +1,7 @@
 package ger.girod.recipesapp.domain
 
+import ger.girod.recipesapp.data.utils.INGREDIENTS_IMAGE
+
 data class ExtendendIngredientsModel(
     val aisle : String,
     val amount : Double,
@@ -10,4 +12,8 @@ data class ExtendendIngredientsModel(
     val original : String,
     val unit : String
 ) {
+
+    fun getIngredientImage() : String {
+        return INGREDIENTS_IMAGE+image
+    }
 }

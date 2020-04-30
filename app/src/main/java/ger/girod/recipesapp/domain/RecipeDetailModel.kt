@@ -17,4 +17,13 @@ data class RecipeDetailModel(
     val summary : String
 
 ) {
+
+    fun getReadyInString() : String {
+        return "$readyInMinutes minutes"
+    }
+
+    fun getServingString() : String {
+        return  "Portions : $servings "
+    }
+
 }

@@ -9,7 +9,7 @@ import ger.girod.recipesapp.presentation.base.BaseViewModel
 import ger.girod.recipesapp.presentation.utils.ScreenState
 import kotlinx.coroutines.launch
 
-class RecipeDetailViewModel(val getRecipeDetailUseCase: GetRecipeDetailUseCase) : BaseViewModel() {
+class RecipeDetailViewModel(private val getRecipeDetailUseCase: GetRecipeDetailUseCase) : BaseViewModel() {
 
     var recipeDetailData : MutableLiveData<RecipeDetailModel> = MutableLiveData()
 
