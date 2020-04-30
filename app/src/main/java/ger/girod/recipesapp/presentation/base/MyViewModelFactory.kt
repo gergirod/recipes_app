@@ -1,6 +1,5 @@
-package ger.girod.recipesapp.presentation
+package ger.girod.recipesapp.presentation.base
 
-import android.os.Parcelable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
