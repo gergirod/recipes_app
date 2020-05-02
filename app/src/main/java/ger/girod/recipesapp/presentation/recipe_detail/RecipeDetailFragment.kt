@@ -1,5 +1,6 @@
 package ger.girod.recipesapp.presentation.recipe_detail
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.text.Html
 import android.view.MenuItem
@@ -103,6 +104,9 @@ class RecipeDetailFragment : BaseFragment() {
         portion_text.text = recipeDetailModel.getServingString()
         time_text.text = recipeDetailModel.getReadyInString()
         ingredientsAdapter.setList(recipeDetailModel.extendedIngredients)
+        about_food_title.text = getString(R.string.about_the_food)
+        ingredients_title.text = getString(R.string.ingredients)
+        timer_image.visibility = View.VISIBLE
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
