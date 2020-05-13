@@ -12,29 +12,25 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ger.girod.recipesapp.domain.RecipeModel
 import ger.girod.recipesapp.presentation.recipe_detail.RecipeDetailActivity
 import ger.girod.recipesapp.presentation.utils.ScreenState
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RecipesFragment : BaseFragment() , RecipesAdapter.OnRowClickListener {
 
     override fun layoutId() = R.layout.recipes_list_fragment
 
-    private lateinit var viewModel : RecipesViewModel
     private val adapter : RecipesAdapter by lazy {
         RecipesAdapter(this)
     }
+    private val recipesViewModel : RecipesViewModel by  viewModel()
+
 
     private fun initializeViewModel() {
-        viewModel =
-            RecipesViewModel(
-                GetRecipesUseCaseImpl(
-                    ApiClient.create()
-                )
-            )
 
-        viewModel.recipesData.observe(this, Observer {
+        recipesViewModel.recipesData.observe(this, Observer {
             adapter.setList(it as ArrayList<RecipeModel>)
         })
 
-        viewModel.screenSteteData.observe(this, Observer {
+        recipesViewModel.screenSteteData.observe(this, Observer {
             when(it){
                 ScreenState.Loading -> progress_bar.visibility = View.VISIBLE
                 ScreenState.LoadingFinish -> progress_bar.visibility = View.GONE
@@ -51,7 +47,7 @@ class RecipesFragment : BaseFragment() , RecipesAdapter.OnRowClickListener {
         super.onViewCreated(view, savedInstanceState)
         initializeList()
 
-        viewModel.getRecipes()
+        recipesViewModel.getRecipes()
     }
 
     private fun initializeList() {

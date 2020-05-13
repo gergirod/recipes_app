@@ -5,5 +5,5 @@ import ger.girod.recipesapp.domain.RecipeDetailModel
 
 interface GetRecipeDetailUseCase {
 
-    suspend fun getRecipieDetail(recipeId : Long) : ResultWrapper<RecipeDetailModel>
+    suspend fun getRecipeDetail(recipeId : Long) : ResultWrapper<RecipeDetailModel>
  }
