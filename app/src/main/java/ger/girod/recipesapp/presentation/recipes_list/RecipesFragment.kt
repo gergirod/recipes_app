@@ -3,8 +3,6 @@ package ger.girod.recipesapp.presentation.recipes_list
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
-import ger.girod.recipesapp.data.rest_service.ApiClient
-import ger.girod.recipesapp.domain.use_case.GetRecipesUseCaseImpl
 import ger.girod.recipesapp.presentation.base.BaseFragment
 import ger.girod.recipesapp.R
 import kotlinx.android.synthetic.main.recipes_list_fragment.*
