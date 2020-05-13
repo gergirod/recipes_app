@@ -16,7 +16,7 @@ class RecipeDetailViewModel(private val getRecipeDetailUseCase: GetRecipeDetailU
     fun getRecipeDetail(id : Long) {
         viewModelScope.launch {
             screenSteteData.postValue(ScreenState.Loading)
-            when(val response = getRecipeDetailUseCase.getRecipieDetail(id)) {
+            when(val response = getRecipeDetailUseCase.getRecipeDetail(id)) {
                 is ResultWrapper.Success -> recipeDetailData.postValue(response.value)
                 is ResultWrapper.ServerError -> errorMessageData.postValue(response.errorMessage)
             }

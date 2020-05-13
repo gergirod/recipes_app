@@ -1,6 +1,5 @@
 package ger.girod.recipesapp.presentation.recipe_detail
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.text.Html
 import android.view.MenuItem
@@ -10,8 +9,6 @@ import androidx.lifecycle.Observer
 import coil.api.load
 import coil.size.Scale
 import coil.transform.CircleCropTransformation
-import ger.girod.recipesapp.data.rest_service.ApiClient
-import ger.girod.recipesapp.domain.use_case.GetRecipeDetailUseCaseImpl
 import ger.girod.recipesapp.presentation.base.BaseFragment
 import ger.girod.recipesapp.R
 import ger.girod.recipesapp.domain.RecipeDetailModel
@@ -19,10 +16,7 @@ import ger.girod.recipesapp.presentation.utils.ScreenState
 import kotlinx.android.synthetic.main.recipe_detail_fragment.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.appcompat.app.AppCompatActivity
-
-
-
-
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 const val RECIPE_ID = "recipe_id"
@@ -40,9 +34,7 @@ class RecipeDetailFragment : BaseFragment() {
         IngredientsAdapter()
     }
 
-    private val viewModel : RecipeDetailViewModel by lazy {
-        RecipeDetailViewModel(GetRecipeDetailUseCaseImpl(ApiClient.create()))
-    }
+    private val detailViewModel : RecipeDetailViewModel by viewModel()
 
     override fun layoutId() = R.layout.recipe_detail_fragment
 
@@ -54,7 +46,7 @@ class RecipeDetailFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getRecipeDetail(arguments!!.getLong(RECIPE_ID, 0))
+        detailViewModel.getRecipeDetail(arguments!!.getLong(RECIPE_ID, 0))
         initIngredientsList()
 
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
@@ -69,18 +61,18 @@ class RecipeDetailFragment : BaseFragment() {
     private fun initViewModel() {
 
 
-        viewModel.recipeDetailData.observe(this, Observer {
+        detailViewModel.recipeDetailData.observe(this, Observer {
             populateData(it)
         })
 
-        viewModel.screenSteteData.observe(this , Observer {
+        detailViewModel.screenSteteData.observe(this , Observer {
             when(it) {
                 ScreenState.Loading -> progress_bar.visibility = View.VISIBLE
                 ScreenState.LoadingFinish -> progress_bar.visibility = View.GONE
             }
         })
 
-        viewModel.errorMessageData.observe(this, Observer {
+        detailViewModel.errorMessageData.observe(this, Observer {
             Toast.makeText(activity, it, Toast.LENGTH_LONG).show()
         })
     }
